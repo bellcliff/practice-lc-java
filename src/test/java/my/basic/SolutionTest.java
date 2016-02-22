@@ -31,16 +31,13 @@ public class SolutionTest {
         int[] nums = new int[]{1, 5, 10};
         int n = 20;
         assertEquals(solution.minPatches(nums, n), 2);
-//
-//        nums = new int[]{1, 2, 2};
-//        n = 5;
-//        assertEquals(solution.minPatches(nums, n), 0);
-//
-//        nums = new int[]{1,3};
-//        n = 6;
-//        assertEquals(solution.minPatches(nums, n), 2);
+
+        nums = new int[]{1, 2, 2};
+        n = 5;
+        assertEquals(solution.minPatches(nums, n), 0);
     }
 
+    @Test
     public void testSearchMatrix() {
         int[][] matrix = new int[][]{
             new int[]{ 1, 4, 7,11,15},
@@ -51,5 +48,12 @@ public class SolutionTest {
         };
         assertTrue(solution.searchMatrix(matrix, 5));
         assertFalse(solution.searchMatrix(matrix, 20));
+    }
+
+    @Test
+    public void testMaximumGap() {
+        assertEquals(0, solution.maximumGap(new int[]{1,1}));
+        assertEquals(1, solution.maximumGap(new int[]{1,2}));
+        assertEquals(10, solution.maximumGap(new int[]{1, 10, 5, 20}));
     }
 }

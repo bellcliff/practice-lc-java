@@ -1,4 +1,5 @@
 package my.basic;
+import java.util.Arrays;
 
 public class Solution {
 
@@ -96,5 +97,44 @@ public class Solution {
         }
 
         return false;
+    }
+
+    /**
+     * Given an unsorted array, find the maximum difference between the successive elements in its sorted form.
+     *
+     * Try to solve it in linear time/space.
+     *
+     * Return 0 if the array contains less than 2 elements.
+     *
+     * You may assume all elements in the array are non-negative integers and fit in the 32-bit signed integer range.
+     */
+    public int maximumGap(int[] nums) {
+        if (nums == null || nums.length < 2) return 0;
+        // bucket sort
+        int min = nums[0], max = nums[0];
+        // get min and max
+        for (int num: nums) {min = Math.min(min, num);max = Math.max(max, num);}
+        // get bucket space
+        int gap = (int)Math.ceil((double)(max-min)/(nums.length - 1));
+        int[] bucketMIN = new int[nums.length - 1];
+        int[] bucketMAX = new int[nums.length - 1];
+        Arrays.fill(bucketMIN, Integer.MAX_VALUE);
+        Arrays.fill(bucketMAX, Integer.MIN_VALUE);
+        for (int num: nums) {
+            if (num == min || num == max) continue;
+            int idx = (num - min) / gap;
+            bucketMIN[idx] = Math.min(num, bucketMIN[idx]);
+            bucketMAX[idx] = Math.max(num, bucketMAX[idx]);
+        }
+        // scan for max gap
+        int maxGap = Integer.MIN_VALUE;
+        int previous = min;
+        for (int i = 0; i < nums.length - 1; i++){
+            // empty bucket
+            if (bucketMIN[i] == Integer.MAX_VALUE && bucketMAX[i] == Integer.MIN_VALUE) continue;
+            maxGap = Math.max(maxGap, bucketMIN[i] - previous);
+            previous = bucketMAX[i];
+        }
+        return Math.max(maxGap, max - previous);
     }
 }
