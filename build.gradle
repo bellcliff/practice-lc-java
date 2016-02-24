@@ -3,6 +3,11 @@ repositories {
     jcenter()
 }
 
+test {
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = 'full'
+}
+
 dependencies {
     testCompile 'junit:junit:4.12'
 }

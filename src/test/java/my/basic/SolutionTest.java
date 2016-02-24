@@ -61,4 +61,17 @@ public class SolutionTest {
     public void testJump2() {
         assertEquals(2, solution.jump2(new int[]{2,3,1,1,4}));
     }
+
+    @Test
+    public void testCoinChange(){
+        assertEquals(-1, solution.coinChange(null, 10));
+        assertEquals(0, solution.coinChange(new int[0], 0));
+        assertEquals(1, solution.coinChange(new int[]{1}, 1));
+        assertEquals(1, solution.coinChange(new int[]{1,2}, 1));
+        assertEquals(1, solution.coinChange(new int[]{1,2}, 2));
+        assertEquals(-1, solution.coinChange(new int[]{2,3}, 1));
+        assertEquals("[2,3] to 5 is 2", 2, solution.coinChange(new int[]{2,3}, 5));
+        assertEquals(2, solution.coinChange(new int[]{2,3}, 4));
+        assertEquals(1, solution.coinChange(new int[]{2,3}, 3));
+    }
 }
