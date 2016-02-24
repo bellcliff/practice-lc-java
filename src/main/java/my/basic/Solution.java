@@ -137,4 +137,32 @@ public class Solution {
         }
         return Math.max(maxGap, max - previous);
     }
+
+    /**
+     * Given an array of non-negative integers, you are initially positioned at the first index of the array.
+     *
+     * Each element in the array represents your maximum jump length at that position.
+     *
+     * Your goal is to reach the last index in the minimum number of jumps.
+     *
+     * For example:
+     * Given array A = [2,3,1,1,4]
+     *
+     * The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)
+     */
+    public int jump2(int[] A) {
+        // bfs
+        int n = A.length;
+        if (n < 2) return 0;
+        int lv = 0, cMax = 0, i = 0, nMax = 0;
+        while(cMax - i + 1 > 0) {
+            lv++;
+            for (; i<=cMax; i++) {
+                nMax = Math.max(nMax, A[i] + i);
+                if (nMax >= n - 1) return lv;
+            }
+            cMax = nMax;
+        }
+        return 0;
+    }
 }

@@ -56,4 +56,9 @@ public class SolutionTest {
         assertEquals(1, solution.maximumGap(new int[]{1,2}));
         assertEquals(10, solution.maximumGap(new int[]{1, 10, 5, 20}));
     }
+
+    @Test
+    public void testJump2() {
+        assertEquals(2, solution.jump2(new int[]{2,3,1,1,4}));
+    }
 }
